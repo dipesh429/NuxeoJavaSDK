@@ -15,57 +15,31 @@ public class NuxeoConnect {
 	public static void main(String args[]) {
 
 		// Nuxeo Java Client is created
-		NuxeoClient client = new NuxeoClient.Builder().url("http://tourismministry.phoenixsolutions.com.np:8888/nuxeo")
+		NuxeoClient client = new NuxeoClient.Builder().url("http://localhost:8080/nuxeo")
 				.authentication("Administrator", "Administrator").schemas("*") // fetch all document schemas
 				.connect();
-
-			
-
 		Repository repository = client.repository();
 
-		//Add
+//Menu
+	//create
+		// Document file = Document.createWithName("One", "Band");
+		Document menu = Document.createWithName("मेनु", "Folder");
+		// menu.setPropertyValue("band:abbr", "ELF");
+		repository.createDocumentByPath("/", menu);
 
-		Document file = Document.createWithName("One", "Band");
-		file.setPropertyValue("band:abbr", "ELF");
-		file.setPropertyValue("band:band_name", "Extremely Low Frequnecy");
-		file.setPropertyValue("band:band_no", 1);
-		file.setPropertyValue("band:h_freq", 30);
-		file.setPropertyValue("band:l_freq", 3);
-		file = repository.createDocumentByPath("/default-domain/workspaces/Bikings/Liferay", file);
-		
+	
 
-		//fetching
+	
+
+//fetching
 
 		// Document myfile = repository.fetchDocumentByPath("/default-domain/workspaces/Bikings/Liferay/One");
 		// String title = myfile.getPropertyValue("band:band_name"); // equals to folder
 		// System.out.println(title);
 
 
+// file upload
 
-
-
-		// myfile.setPropertyValue("dc:custom", "oiiiii");
-		// repository.updateDocument(myfile);
-
-		// creating document folder
-
-		// Document folder = Document.createWithName("Root Folder", "Folder");
-		// folder = repository.createDocumentByPath("/", folder);
-
-
-//creating note
-		// Document note = Document.createWithName("note001", "Note");
-		// note = repository.createDocumentByPath("/default-domain/workspaces/Phoenix/DipeshCollection", note);
-
-		// Document file = Document.createWithName("vechicle", "Vehicle");
-		// file.setPropertyValue("veh:organization", "orgB");
-		// file.setPropertyValue("veh:sth", "orgA");
-		// file.setPropertyValue("phoenixphoto:Categoryy", "CLASS D");
-		// file.setPropertyValue("phoenixphoto:Country", "Nepal");
-		// file = repository.createDocumentByPath("/", file);
-		// System.out.println(file.getPropertyValue("veh:organization"));
-		// System.out.println(file.getPropertyValue("veh:sth"));
-	
 		// Document domain = client.repository().fetchDocumentByPath("/default-domain");
 
 		// Let's first retrieve batch upload manager to handle our batch:
