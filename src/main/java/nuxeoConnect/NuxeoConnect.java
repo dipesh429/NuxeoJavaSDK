@@ -22,7 +22,8 @@ public class NuxeoConnect {
 	public static void main(String args[]) {
 
 		// Nuxeo Java Client is created
-		NuxeoClient client = new NuxeoClient.Builder().url("http://localhost:8080/nuxeo")
+		// NuxeoClient client = new NuxeoClient.Builder().url("http://localhost:8080/nuxeo")
+		NuxeoClient client = new NuxeoClient.Builder().url("http://tourismministry.phoenixsolutions.com.np:8888/nuxeo")
 				.authentication("Administrator", "Administrator").schemas("*") // fetch all document schemas
 				.connect();
 		Repository repository = client.repository();
