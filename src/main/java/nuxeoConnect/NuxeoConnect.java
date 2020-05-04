@@ -22,8 +22,8 @@ public class NuxeoConnect {
 	public static void main(String args[]) {
 
 		// Nuxeo Java Client is created
-		// NuxeoClient client = new NuxeoClient.Builder().url("http://localhost:8080/nuxeo")
-		NuxeoClient client = new NuxeoClient.Builder().url("http://tourismministry.phoenixsolutions.com.np:8888/nuxeo")
+		// NuxeoClient client = new NuxeoClient.Builder().url("http://localhost:8080/parliament")
+		NuxeoClient client = new NuxeoClient.Builder().url("http://tourismministry.phoenixsolutions.com.np:8888/parliament")
 				.authentication("Administrator", "Administrator").schemas("*") // fetch all document schemas
 				.connect();
 		Repository repository = client.repository();
@@ -31,32 +31,32 @@ public class NuxeoConnect {
 //Menu
 	//create
 		// Document file = Document.createWithName("One", "Band");
-		Document menu = Document.createWithName("मेनु", "Folder");
+		Document menu = Document.createWithName("menu", "Folder");
 		// menu.setPropertyValue("band:abbr", "ELF");
 		repository.createDocumentByPath("/", menu);
-		Document report = Document.createWithName("प्रतिबेदन्हारू", "Folder");
-		repository.createDocumentByPath("/मेनु", report);
-		Document event = Document.createWithName("कार्यक्रम", "Folder");
-		repository.createDocumentByPath("/मेनु", event);
-		Document meeting = Document.createWithName("बैठक", "Folder");
-		repository.createDocumentByPath("/मेनु", meeting);
-		Document ics = Document.createWithName("केन्द्रिय बेरुजु अवस्था", "Folder");
-		repository.createDocumentByPath("/मेनु", ics);
+		Document report = Document.createWithName("report", "Folder");
+		repository.createDocumentByPath("/menu", report);
+		Document event = Document.createWithName("event", "Folder");
+		repository.createDocumentByPath("/menu", event);
+		Document meeting = Document.createWithName("meeting", "Folder");
+		repository.createDocumentByPath("/menu", meeting);
+		Document ics = Document.createWithName("integrated-central-status", "Folder");
+		repository.createDocumentByPath("/menu", ics);
 
 
 		UserManager userManager = client.userManager();
 
-		createUsers(userManager,"Operator","Operator","phoenix","operator");
-		createUsers(userManager,"Secretary","Secretary","phoenix","secretary");
-		createUsers(userManager,"DepSecretary","DepSecretary","phoenix","depsecretary");
-		createUsers(userManager,"Education","Education","phoenix","education");
-		createUsers(userManager,"Health","Health","phoenix","health");
-		createUsers(userManager,"Tourism","Tourism","phoenix","tourism");
+		createUsers(userManager,"operator","Operator","operator");
+		createUsers(userManager,"secretary","Secretary","secretary");
+		createUsers(userManager,"depsecretary","DepSecretary","depsecretary");
+		createUsers(userManager,"education","Education","education");
+		createUsers(userManager,"health","Health","health");
+		createUsers(userManager,"tourism","Tourism","tourism");
 
-		String[] memberUsersSecretariat = {"Operator","Secretary","DepSecretary"};
-		String[] memberUsersBeruju = {"Education","Health","Tourism"};
-		createGroup(userManager,"Secretariat","Secretariat",memberUsersSecretariat);
-		createGroup(userManager,"Beruju","Beruju",memberUsersBeruju);
+		String[] memberUsersSecretariat = {"operator","secretary","depsecretary"};
+		String[] memberUsersBeruju = {"education","health","tourism"};
+		createGroup(userManager,"secretariat","Secretariat",memberUsersSecretariat);
+		createGroup(userManager,"beruju","Beruju",memberUsersBeruju);
 	
 //fetching
 
@@ -91,11 +91,10 @@ public class NuxeoConnect {
 		// System.out.print(pic);
 	}
 
-	public static void createUsers(UserManager userManager,String userName,String firstName,String companyName,String password){
+	public static void createUsers(UserManager userManager,String userName,String firstName,String password){
 		User user = new User();
 		user.setUserName(userName);
 		user.setFirstName(firstName);
-		user.setCompany(companyName);
 		user.setPassword(password);
 		user = userManager.createUser(user);
 	}
