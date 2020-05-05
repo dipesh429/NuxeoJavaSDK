@@ -22,25 +22,25 @@ public class NuxeoConnect {
 	public static void main(String args[]) {
 
 		// Nuxeo Java Client is created
-		// NuxeoClient client = new NuxeoClient.Builder().url("http://localhost:8080/parliament")
-		NuxeoClient client = new NuxeoClient.Builder().url("http://tourismministry.phoenixsolutions.com.np:8888/parliament")
+		NuxeoClient client = new NuxeoClient.Builder().url("http://localhost:8080/parliament")
+		// NuxeoClient client = new NuxeoClient.Builder().url("http://tourismministry.phoenixsolutions.com.np:8888/parliament")
 				.authentication("Administrator", "Administrator").schemas("*") // fetch all document schemas
 				.connect();
 		Repository repository = client.repository();
 
 //Menu
 	//create
-		// Document file = Document.createWithName("One", "Band");
+		Document file = Document.createWithName("One", "Band");
 		Document menu = Document.createWithName("menu", "Folder");
 		// menu.setPropertyValue("band:abbr", "ELF");
 		repository.createDocumentByPath("/", menu);
-		Document report = Document.createWithName("report", "Folder");
+		Document report = Document.createWithName("report-list", "Report-List");
 		repository.createDocumentByPath("/menu", report);
-		Document event = Document.createWithName("event", "Folder");
+		Document event = Document.createWithName("event-list", "Event-List");
 		repository.createDocumentByPath("/menu", event);
-		Document meeting = Document.createWithName("meeting", "Folder");
+		Document meeting = Document.createWithName("meeting-list", "Meeting-List");
 		repository.createDocumentByPath("/menu", meeting);
-		Document ics = Document.createWithName("integrated-central-status", "Folder");
+		Document ics = Document.createWithName("integrated-central-status-list", "Integrated-Central-Status-List");
 		repository.createDocumentByPath("/menu", ics);
 
 
